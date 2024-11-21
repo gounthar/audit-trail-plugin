@@ -43,7 +43,7 @@ public class CredentialUsageListener implements CredentialsUseListener {
 
         String runName = run.getExternalizableId();
         String runType = run.getClass().toString();
-        builder.append(String.format("'%s' (%s) ", runName, runType));
+        builder.append("'%s' (%s) ".formatted(runName, runType));
         auditLog(c, builder);
     }
 
@@ -63,7 +63,7 @@ public class CredentialUsageListener implements CredentialsUseListener {
 
         String nodeName = node.getNodeName();
         String nodeType = node.getClass().toString();
-        builder.append(String.format("'%s' (%s) ", nodeName, nodeType));
+        builder.append("'%s' (%s) ".formatted(nodeName, nodeType));
         auditLog(c, builder);
     }
 
@@ -83,18 +83,18 @@ public class CredentialUsageListener implements CredentialsUseListener {
 
         String runName = item.getFullName();
         String itemType = item.getClass().toString();
-        builder.append(String.format("'%s' (%s) ", runName, itemType));
+        builder.append("'%s' (%s) ".formatted(runName, itemType));
         auditLog(c, builder);
     }
 
     private void auditLog(Credentials c, StringBuilder builder) {
         String credsType = c.getClass().toString();
-        if (c instanceof BaseStandardCredentials) {
-            String credsId = ((BaseStandardCredentials) c).getId();
-            builder.append(String.format("used credentials '%s' (%s).", credsId, credsType));
-        } else if (c instanceof IdCredentials) {
-            String credsId = ((IdCredentials) c).getId();
-            builder.append(String.format("used credentials '%s' (%s).", credsId, credsType));
+        if (c instanceof BaseStandardCredentials credentials) {
+            String credsId = credentials.getId();
+            builder.append("used credentials '%s' (%s).".formatted(credsId, credsType));
+        } else if (c instanceof IdCredentials credentials) {
+            String credsId = credentials.getId();
+            builder.append("used credentials '%s' (%s).".formatted(credsId, credsType));
         } else {
             String noIdAvailableWarning = builder
                     + ("used an unsupported credentials type (" + credsType

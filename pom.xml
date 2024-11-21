@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.88</version>
+    <version>5.3</version>
     <relativePath />
   </parent>
 
@@ -43,7 +43,7 @@
   <properties>
     <changelist>999999-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/audit-trail-plugin</gitHubRepo>
-    <jenkins.version>2.452.4</jenkins.version>
+    <jenkins.version>2.479.1</jenkins.version>
     <spotless.check.skip>false</spotless.check.skip>
   </properties>
 
@@ -51,8 +51,8 @@
     <dependencies>
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-2.452.x</artifactId>
-        <version>3435.v238d66a_043fb_</version>
+        <artifactId>bom-2.479.x</artifactId>
+        <version>3696.vb_b_4e2d1a_0542</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -64,6 +64,10 @@
       <groupId>com.cloudbees</groupId>
       <artifactId>syslog-java-client</artifactId>
       <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.inject</groupId>
+      <artifactId>jakarta.inject-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>

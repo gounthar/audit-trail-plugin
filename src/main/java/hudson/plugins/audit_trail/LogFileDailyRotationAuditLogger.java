@@ -8,7 +8,6 @@ import hudson.model.Descriptor;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -49,7 +48,7 @@ public class LogFileDailyRotationAuditLogger extends AbstractLogFileAuditLogger 
     @DataBoundConstructor
     public LogFileDailyRotationAuditLogger(String log, int count, String logSeparator) {
         super(log, count, logSeparator);
-        this.basePattern = Paths.get(log);
+        this.basePattern = Path.of(log);
         initializeDailyRotation();
     }
 
@@ -57,7 +56,7 @@ public class LogFileDailyRotationAuditLogger extends AbstractLogFileAuditLogger 
             value = "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
             justification = "value can be null if no config file exists")
     Object readResolve() {
-        this.basePattern = Paths.get(getLog());
+        this.basePattern = Path.of(getLog());
         super.readResolve();
         initializeDailyRotation();
         return this;
@@ -104,8 +103,7 @@ public class LogFileDailyRotationAuditLogger extends AbstractLogFileAuditLogger 
     String computePattern() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneId.systemDefault());
         String formattedInstant = formatter.format(initInstant);
-        String computedFileName =
-                String.format("%s-%s", FilenameUtils.getName(basePattern.toString()), formattedInstant);
+        String computedFileName = "%s-%s".formatted(FilenameUtils.getName(basePattern.toString()), formattedInstant);
         Path parentFolder = basePattern.getParent();
         if (parentFolder != null) {
             return parentFolder.resolve(computedFileName).toString();

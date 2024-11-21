@@ -92,7 +92,7 @@ public class ConsoleAuditLogger extends AuditLogger {
     private String getLogPrefixPadded() {
         if (hasLogPrefix()) {
             if (logPrefixPadded == null) {
-                logPrefixPadded = String.format(" - %s - ", getLogPrefix());
+                logPrefixPadded = " - %s - ".formatted(getLogPrefix());
             }
             return logPrefixPadded;
         }

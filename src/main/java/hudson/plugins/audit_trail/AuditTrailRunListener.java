@@ -92,8 +92,7 @@ public class AuditTrailRunListener extends RunListener<Run> {
     }
 
     String buildNodeName(Run<?, ?> run) {
-        if (run instanceof AbstractBuild) {
-            var abstractBuild = (AbstractBuild<?, ?>) run;
+        if (run instanceof AbstractBuild abstractBuild) {
             Node node = abstractBuild.getBuiltOn();
             if (node != null) {
                 return node.getDisplayName();

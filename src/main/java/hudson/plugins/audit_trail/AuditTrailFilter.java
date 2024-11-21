@@ -138,7 +138,7 @@ public class AuditTrailFilter implements Filter {
     }
 
     private String formatExtraInfoString(String toFormat) {
-        return String.format(" (%s)", toFormat);
+        return " (%s)".formatted(toFormat);
     }
 
     public void destroy() {}
